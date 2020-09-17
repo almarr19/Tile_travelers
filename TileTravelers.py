@@ -22,10 +22,19 @@ def travel(x,y):
         elif: y == 3:
             place = '(W)est or (S)outh'
 
-def direction(k,y,x):
+def direction(x,y,k):
     if k == 'N' or k == 'n':
-        if 
-        y = y + 1
+        return x , y +1
+
+    elif k == 'E' or k == 'e':
+        return x+1 , y
+
+    elif k == 'S' or k== 's':
+        return x , y-1
+    
+    elif k == 'W' or k == 'w':
+        return x-1 , y
+
 
 x = 1
 y = 1
