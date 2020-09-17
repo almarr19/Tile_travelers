@@ -1,72 +1,78 @@
 
-def travel(x,y):
-    n=s=w=e=0
-    if x==1:
-        if y==1:
-            place = '(N)orth'
-            n=1
-        elif y==2:
-            place = '(N)orth or (E)ast or (S)outh'
-            n=e=s=1
-        elif: y == 3:
-            place = '(E)ast or (S)outh'
-            e=s=1
-    if x == 2:
-         if y==1:
-            place = '(N)orth'
-            n=1
-        elif y==2:
-            place = '(W)est or (S)outh'
-            w=s=1
-        elif: y == 3:
-            place = '(E)ast or (W)est'
-            e=w=1
-    if x == 3:
-         if y==1:
-            V = 1
-        elif y==2:
-            place = '(N)orth or (S)outh'
-            n=s=1
-        elif: y == 3:
-            place = '(W)est or (S)outh'
-            w=s=1
+N = '(N)orth'
+S = '(S)outh'
+E = '(E)ast'
+W = '(W)est'
 
-def direction(x,y,k):
-    if k == 'N' or k == 'n':
-        if n==0:
-            ans="Not a valid direction!"
-            return ans
-        else:
-            return x , y +1
+x, y = 1,1
+acceptable_moves = ('')
+direction = ''
 
-    elif k == 'E' or k == 'e':
-        if e==0:
-            ans="Not a valid direction!"
-            return ans
-        else:
-            return x+1 , y
 
-    elif k == 'S' or k== 's':
-        if s==0:
-            ans="Not a valid direction!"
-            return ans
-        else:
-            return x , y-1
+def travel(x, y, direction):
     
-    elif k == 'W' or k == 'w':
-        if w==0:
-            ans="Not a valid direction!"
-            return ans
-        else:
-            return x-1 , y
 
+    if direction == 'n' or direction == 'N':
+        return x, y + 1
+    elif direction == 's' or direction == 'S':
+        return x, y - 1
+    elif direction == 'e' or direction == 'E':
+        return x + 1, y
+    elif direction == 'w' or direction == 'W':
+        return x - 1, y
 
-x = 1
-y = 1
-
-while V!= 1:
-    travel(x,y)
-    k = input('Direction: ')
+while True: 
+    if direction in acceptable_moves:
+        if ((x == 1) and (y == 1)) or ((x == 2) and (y == 1)):
+            print("You can travel: {}.".format(N))
+            acceptable_moves = ('n','N')   
+        elif x == 1 and y == 2:
+            print("You can travel: {} or {} or {}.".format(N,E,S))
+            acceptable_moves = ('n', 'e', 's','N', 'E', 'S') 
+        elif (x == 1) and (y == 3):
+            print("You can travel: {} or {}.".format(E,S))
+            acceptable_moves = ('e', 's', 'E', 'S') 
+        elif ((x == 2) and (y == 2)) or ((x == 3) and (y == 3)):
+            print("You can travel: {} or {}.".format(S,W))
+            acceptable_moves = ('s', 'w', 'S','W') 
+        elif (x == 2) and (y == 3):
+            print("You can travel: {} or {}.".format(E,W))
+            acceptable_moves = ('e', 'w','E','W') 
+        elif (x == 3) and (y == 2):
+            print("You can travel: {} or {}.".format(N,S))
+            acceptable_moves = ('n', 's','N','S') 
+        elif x == 3 and y == 1:
+            print ('Victory!')
+            break
+      
+    direction = input("Direction: ")
+    if direction.lower() in acceptable_moves:
+        x, y = travel(x, y, direction) # Sækja travel-functionið
+    else:
+        print ('Not a valid direction!')
+        if ((x == 1) and (y == 1)) or ((x == 2) and (y == 1)):
+            print("You can travel: {}.".format(N))
+            acceptable_moves = ('n','N')   
+        elif x == 1 and y == 2:
+            print("You can travel: {} or {} or {}.".format(N,E,S))
+            acceptable_moves = ('n', 'e', 's','N', 'E', 'S') 
+        elif (x == 1) and (y == 3):
+            print("You can travel: {} or {}.".format(E,S))
+            acceptable_moves = ('e', 's', 'E', 'S') 
+        elif ((x == 2) and (y == 2)) or ((x == 3) and (y == 3)):
+            print("You can travel: {} or {}.".format(S,W))
+            acceptable_moves = ('s', 'w', 'S','W') 
+        elif (x == 2) and (y == 3):
+            print("You can travel: {} or {}.".format(E,W))
+            acceptable_moves = ('e', 'w','E','W') 
+        elif (x == 3) and (y == 2):
+            print("You can travel: {} or {}.".format(N,S))
+            acceptable_moves = ('n', 's','N','S') 
+        elif x == 3 and y == 1:
+            print ('Victory!')
+            break
+        
+        
 
     
 
